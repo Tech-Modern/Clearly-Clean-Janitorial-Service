@@ -473,7 +473,7 @@ Banner Area CSS
 }
 
 .slider-text h1 {
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 15px;
   font-size: 60px;
   font-weight: 800;
@@ -481,7 +481,7 @@ Banner Area CSS
 }
 
 .slider-text p {
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 30px;
   max-width: 545px;
   opacity: .95;
