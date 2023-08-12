@@ -26,6 +26,14 @@
         <title>Clearly Clean Janitorial Service</title>
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
+        <!-- seo metas -->
+        <meta name="description" content="Clearly Clean Janitorial is a company that believes that communication is key to providing excellent service. We staff our cleaning jobs with dedicated and hard-working team members who are properly trained and supervised. We also communicate with our clients on a regular basis to obtain feedback and make sure they are satisfied with our services.">
+        <!-- seo metas -->
+        <meta name="keywords" content="cleaning company, cleaning services, commercial cleaning, commercial cleaning services, professional cleaning services, office cleaning services, construction cleaning services, the cleaning company, cleaning agency, commercial cleaning company, building cleaning services, janitorial cleaning services, commercial office cleaning, office cleaning companies, pro cleaning services, cleaning services company, best cleaning services, professional commercial cleaning services, janitorial companies, professional cleaning company, commercial cleaning business, best cleaning company, cleaning service business, commercial janitorial, professional office cleaning services, office cleaning business, janitorial business, custom clean, custom cleaning services, janitorial services companies, the best cleaning services, professional commercial cleaning, commercial janitorial cleaning services, the cleaning service, i clean services, cleaning service websites, commercial cleaning websites, professional office cleaning">
+        <!-- seo metas -->
+        <meta name="author" content="Clearly Clean Janitorial Service">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
     <body>
@@ -166,7 +174,7 @@
         <div class="contact-section ptb-100 pt-0">
             <div class="container"> 
                 <div class="form-wrapper">
-                    <form id="contactForm" name="contact" method="POST" data-netlify="true">
+                    <form name="contact" method="POST" data-netlify="true" class="row" data-netlify-recaptcha="true" onSubmit="submit">
                         <div class="row">
                             <div class="col-lg-4 col-md-6"> 
                                 <div class="form-group"> 
@@ -195,11 +203,14 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
-                            
+
+                            <div class="col-lg-12 col-md-12">
+                                <div data-netlify-recaptcha="true"></div>
+                            </div>
+
                             <div class="col-md-12 col-lg-12">
                                 <button type="submit" class="default-btn">Send Message</button>
-                                <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                <div class="clearfix"></div>
+                                
                             </div>
                         </div>
                     </form>
