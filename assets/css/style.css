@@ -1192,8 +1192,6 @@ Portfolio Area CSS
 Counter Area CSS
 =================================================*/
 .counter-section {
-  -webkit-clip-path: polygon(50% 0%, 74% 3%, 100% 0, 100% 100%, 76% 97%, 50% 100%, 21% 97%, 0 100%, 0 0, 22% 3%);
-          clip-path: polygon(50% 0%, 74% 3%, 100% 0, 100% 100%, 76% 97%, 50% 100%, 21% 97%, 0 100%, 0 0, 22% 3%);
   position: relative;
   z-index: 1;
   /* background-image: url(../../assets/img/counter-bg.jpg); */
