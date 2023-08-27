@@ -229,7 +229,7 @@ select{cursor:pointer}
 .contactForm .form-wrapper{z-index:3}
 .page-title-area{height:350px;position:relative;z-index:1}
 .about-us,.contact-page,.testimonials-head{background-image:url(../img/title-1.webp)}
-.services-page{background-image:url(../img/title-2.jpg)}
+.services-page{background-image:url(../img/title-2.webp)}
 .page-title-area::before{content:"";background-color:#247ffb;position:absolute;top:0;left:0;width:100%;height:100%;opacity:.5;z-index:-1}
 .page-title-content{margin-top:20px;font-family:Muli,sans-serif;position:relative;z-index:4}
 .page-title-content h1{color:#fff;margin-bottom:13px;font-size:45px;font-weight:500}
