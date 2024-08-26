@@ -1,10 +1,9 @@
-# admin/config.yml
 backend:
   name: git-gateway
   branch: main # Specify the branch you want to work with
 
-media_folder: "assets/img","assets/uploads" # Folder where images are stored
-public_folder: "/img", "/uploads" # URL to access images
+media_folder: "assets/img" # Folder where images are stored
+public_folder: "/img" # URL to access images
 
 collections:
   - name: "employee-newsletter"
@@ -13,7 +12,17 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "PDF File", name: "pdf_file", widget: "file", media_library: "pdf", required: false }
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+      - label: "PDF File"
+        name: "pdf_file"
+        widget: "file"
+        media_library: "pdf"
+        required: false
