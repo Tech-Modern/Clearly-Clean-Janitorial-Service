@@ -1,3 +1,4 @@
+# admin/config.yml
 backend:
   name: git-gateway
   branch: main # Specify the branch you want to work with
@@ -12,17 +13,7 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-      - label: "PDF File"
-        name: "pdf_file"
-        widget: "file"
-        media_library: "pdf"
-        required: false
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "PDF File", name: "pdf_file", widget: "file", media_library: "pdf", required: false }
