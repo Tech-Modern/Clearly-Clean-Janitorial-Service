@@ -5,7 +5,10 @@ backend:
 
 media_folder: "assets/img" # Folder where images are stored
 public_folder: "/img" # URL to access images
-
+media_library:
+  name: uploadcare
+  config:
+    publicKey: "c514ba62d579713ee07e"
 collections:
   - name: "employee-newsletter"
     label: "Employee Newsletters"
