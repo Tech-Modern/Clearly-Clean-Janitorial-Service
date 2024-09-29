@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: develop
 
 
 media_folder: "assets/img" # Folder where images are stored
