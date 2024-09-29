@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <script>
+        UPLOADCARE_PUBLIC_KEY = 'c514ba62d579713ee07e';  <!-- Replace with your Uploadcare public key -->
+    </script>
+    <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .submit-button:disabled {
+            background-color: #ccc;
+        }
+        .download-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #downloadButton {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #downloadButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Job Application</h1>
+
+    <div class="instructions">
+        Please download the job application form, fill it out, and upload the completed form below.
+    </div>
+
+    <div class="download-link">
+        <button id="downloadButton">Download Job Application</button>
+    </div>
+
+    <form id="job-application-form">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" placeholder="Enter your first name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" placeholder="Enter your last name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="userEmail">Your Email:</label>
+            <input type="email" id="userEmail" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="uploadcare-widget">Upload Completed Job Application:</label>
+            <input type="hidden" role="uploadcare-uploader" id="uploadcare-widget" data-tabs="file url" />
+        </div>
+
+        <button type="submit" class="submit-button" id="submitButton">Submit Job Application</button>
+        <p id="loadingMessage" style="display: none;">Submitting your job application...</p>
+    </form>
+</div>
+
+<script>
+    // Download PDF as a blob to prevent redirection
+    document.getElementById('downloadButton').addEventListener('click', async function() {
+        const pdfUrl = 'https://ucarecdn.com/0c21be9f-80e2-492f-b10c-c24c62e33d62/CCJSApplicationMay2024.pdf';
+
+        // Fetch the PDF as a blob
+        const response = await fetch(pdfUrl);
+        const blob = await response.blob();
+
+        // Create a temporary link element for downloading
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob); // Create a URL for the blob
+        link.download = 'CCJSApplication.pdf'; // Set the desired file name
+        link.click();
+
+        // Clean up the URL object
+        URL.revokeObjectURL(link.href);
+    });
+
+    document.getElementById('job-application-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const userEmail = document.getElementById('userEmail').value;
+        const uploadcareWidget = document.getElementById('uploadcare-widget').value;  // Make sure this is not undefined
+        const submitButton = document.getElementById('submitButton');
+        const loadingMessage = document.getElementById('loadingMessage');
+
+        // Check for undefined or empty fields
+        if (!uploadcareWidget || !firstName || !lastName || !userEmail) {
+            alert("Please fill out all required fields and upload the PDF.");
+            return;
+        }
+
+        submitButton.disabled = true;
+        loadingMessage.style.display = 'block';
+
+        // Ensure you are sending a valid JSON object
+        const formData = {
+            firstName,
+            lastName,
+            userEmail,
+            pdf: uploadcareWidget
+        };
+
+        try {
+            const response = await fetch('/.netlify/functions/submit-application', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),  // Correctly stringify the JSON object
+            });
+
+            if (!response.ok) {
+                throw new Error('Error submitting the job application.');
+            }
+
+            const result = await response.json();
+            alert(result.message);
+
+            // Reset the form
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('userEmail').value = '';
+            document.getElementById('uploadcare-widget').value = '';
+        } catch (error) {
+            console.error(error);
+            alert('There was a problem submitting your application. Please try again.');
+        } finally {
+            submitButton.disabled = false;
+            loadingMessage.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
