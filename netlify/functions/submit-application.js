@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
             throw new Error('No data received');
         }
 
-        const { firstName, lastName, userEmail, pdf } = JSON.parse(event.body);
+        const { firstName, lastName, userEmail, pdf, fileName } = JSON.parse(event.body);
 
         if (!firstName || !lastName || !userEmail || !pdf) {
             throw new Error('Missing required form fields');
@@ -37,7 +37,7 @@ exports.handler = async (event, context) => {
             text: `A new job application has been submitted by ${firstName} ${lastName}. The PDF is attached to this email.`,
             attachments: [
                 {
-                    filename: `job-application-${firstName}-${lastName}.pdf`,
+                    filename: fileName,
                     content: pdfResponse.data,  // Attach the downloaded PDF
                     contentType: 'application/pdf'
                 }
@@ -72,11 +72,7 @@ exports.handler = async (event, context) => {
             statusCode: 200,
             body: JSON.stringify({ message: 'Job application submitted successfully!' })
         };
-
     } catch (error) {
-        // Log the full error for debugging
-        console.error('Error submitting job application:', error);
-
         return {
             statusCode: 500,
             body: JSON.stringify({ message: 'Failed to submit job application.', error: error.message })

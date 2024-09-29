@@ -109,7 +109,7 @@
             <input type="hidden" role="uploadcare-uploader" id="uploadcare-widget" data-tabs="file url" />
         </div>
 
-        <button type="submit" class="submit-button" id="submitButton">Submit Job Application</button>
+        <button type="submit" class="submit-button" id="submitButton" disabled>Submit Job Application</button>
         <p id="loadingMessage" style="display: none;">Submitting your job application...</p>
     </form>
 </div>
@@ -133,18 +133,26 @@
         URL.revokeObjectURL(link.href);
     });
 
-    document.getElementById('job-application-form').addEventListener('submit', async function (e) {
+    const widget = uploadcare.Widget('[role=uploadcare-uploader]');
+    let uploadedFileUrl = '';  // To store the uploaded file URL
+    let fileUUID = '';  // To store the UUID of the uploaded file
+
+    widget.onUploadComplete(function(info) {
+        uploadedFileUrl = info.cdnUrl;  // Store the uploaded file URL
+        fileUUID = info.uuid;  // Store the file UUID
+        document.getElementById('submitButton').disabled = false;  // Enable the submit button once the upload is complete
+    });
+
+    document.getElementById('job-application-form').addEventListener('submit', async function(e) {
         e.preventDefault();
 
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
         const userEmail = document.getElementById('userEmail').value;
-        const uploadcareWidget = document.getElementById('uploadcare-widget').value;  // Make sure this is not undefined
         const submitButton = document.getElementById('submitButton');
         const loadingMessage = document.getElementById('loadingMessage');
 
-        // Check for undefined or empty fields
-        if (!uploadcareWidget || !firstName || !lastName || !userEmail) {
+        if (!uploadedFileUrl || !fileUUID || !firstName || !lastName || !userEmail) {
             alert("Please fill out all required fields and upload the PDF.");
             return;
         }
@@ -152,12 +160,15 @@
         submitButton.disabled = true;
         loadingMessage.style.display = 'block';
 
-        // Ensure you are sending a valid JSON object
+        // Create a custom filename with the UUID
+        const fileName = `job-application-${firstName}-${lastName}-${fileUUID}.pdf`;
+
         const formData = {
             firstName,
             lastName,
             userEmail,
-            pdf: uploadcareWidget
+            pdf: uploadedFileUrl,
+            fileName  // Add the custom file name
         };
 
         try {
@@ -166,7 +177,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),  // Correctly stringify the JSON object
+                body: JSON.stringify(formData),
             });
 
             if (!response.ok) {
@@ -180,9 +191,8 @@
             document.getElementById('firstName').value = '';
             document.getElementById('lastName').value = '';
             document.getElementById('userEmail').value = '';
-            document.getElementById('uploadcare-widget').value = '';
         } catch (error) {
-            console.error(error);
+            console.error('Error during submission:', error);
             alert('There was a problem submitting your application. Please try again.');
         } finally {
             submitButton.disabled = false;
