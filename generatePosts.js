@@ -8,40 +8,33 @@ const postsDir = path.join(__dirname, '_posts');
 // Define the output JSON file
 const outputFilePath = path.join(__dirname, 'posts.json');
 
-exports.handler = async (event, context) => {
-  try {
-    const posts = [];
-
-    // Read the markdown files from the directory
-    const files = fs.readdirSync(postsDir);
-
-    files.forEach(file => {
-      if (path.extname(file) === '.md') {
-        const filePath = path.join(postsDir, file);
-
-        // Read the contents of the markdown file
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        const { data } = matter(fileContent); // Extract frontmatter
-
-        // Push the frontmatter data to the posts array
-        posts.push({
-          title: data.title || 'No title',
-          date: data.date || 'No date',
-          file: file  // Add the file name or file path
-        });
-      }
-    });
-
-    // Return the posts as JSON in the response
-    return {
-      statusCode: 200,
-      body: JSON.stringify(posts, null, 2),
-    };
-  } catch (err) {
-    console.error('Error generating posts:', err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: 'Error generating posts' }),
-    };
+// Read the markdown files from the directory
+fs.readdir(postsDir, (err, files) => {
+  if (err) {
+    console.error('Error reading posts directory:', err);
+    return;
   }
-};
+
+  const posts = [];
+
+  files.forEach(file => {
+    if (path.extname(file) === '.md') {
+      const filePath = path.join(postsDir, file);
+
+      // Read the contents of the markdown file
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      const { data } = matter(fileContent); // Extract frontmatter
+
+      // Push the frontmatter data to the posts array
+      posts.push({
+        title: data.title || 'No title',
+        date: data.date || 'No date',
+        file: data.file ? data.file[0] : 'No file'
+      });
+    }
+  });
+
+  // Write the posts array to a JSON file
+  fs.writeFileSync(outputFilePath, JSON.stringify(posts, null, 2), 'utf-8');
+  console.log('posts.json file created successfully!');
+});
