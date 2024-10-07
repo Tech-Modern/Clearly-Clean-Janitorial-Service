@@ -6,7 +6,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "generate-json": "node generatePosts.js",
     "build": "echo \"No build script specified\""
-    
   },
   "keywords": [],
   "author": "",
@@ -17,8 +16,8 @@
     "decap-cms-app": "^3.3.3",
     "front-matter": "^4.0.2",
     "fs": "^0.0.1-security",
+    "gatsby": "^5.13.7",
     "gray-matter": "^4.0.3",
-    "http-server": "^14.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
