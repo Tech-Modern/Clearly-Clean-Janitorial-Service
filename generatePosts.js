@@ -28,11 +28,14 @@ fs.readdir(postsDir, (err, files) => {
       // Push the frontmatter data to the posts array
       posts.push({
         title: data.title || 'No title',
-        // date: data.date || 'No date',
-        file: data.file ? data.file[0] : 'No file'
+        file: data.file ? data.file[0] : 'No file',
+        date: data.date || 'No date' // Use the 'date' field from frontmatter
       });
     }
   });
+
+  // Sort posts based on the 'date' field in descending order
+  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // Write the posts array to a JSON file
   fs.writeFileSync(outputFilePath, JSON.stringify(posts, null, 2), 'utf-8');
