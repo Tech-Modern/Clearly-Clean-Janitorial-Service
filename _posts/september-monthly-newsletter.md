@@ -1,7 +1,7 @@
 ---
 title: September Monthly Newsletter
-date: 2024-10-30
+date: 2024-09-28T22:40:00.000Z
 file:
-  - https://ucarecdn.com/f5d870f2-4ce6-4e27-bdde-bdccea9c491b/September Monthly
-    Newsletter.pdf
+  - https://ucarecdn.com/1476812c-be25-4d18-b990-3f6527f8bbc1/CCJS
 ---
+September Monthly Newsletter
