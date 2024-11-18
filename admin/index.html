@@ -50,22 +50,18 @@
 <script src="https://unpkg.com/react@^18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@^18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/decap-cms-app/dist/decap-cms-app.js"></script>
-<!--<script>-->
-<!--import uploadcare from 'netlify-cms-media-library-uploadcare';-->
-<!--CMS.registerMediaLibrary(uploadcare);-->
-<!--</script>-->
-<!--<script>DecapCmsApp.init();</script>-->
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
-     <script>
-  netlifyIdentity.init();
-        netlifyIdentity.on('login', () => {
-  // Redirect to the Decap CMS backend
-  window.location.href = '/admin/'; 
-});
-         netlifyIdentity.on('logout', () => {
-    console.log('User logged out');
-    window.location.href = '/admin/index.html'; // Redirect on logout
-});
-    </script>
+<script>DecapCmsApp.init();</script>
+<!--     <script>-->
+<!--  netlifyIdentity.init();-->
+<!--        netlifyIdentity.on('login', () => {-->
+<!--  // Redirect to the Decap CMS backend-->
+<!--  window.location.href = '/admin/'; -->
+<!--});-->
+<!--         netlifyIdentity.on('logout', () => {-->
+<!--    console.log('User logged out');-->
+<!--    window.location.href = '/admin/index.html'; // Redirect on logout-->
+<!--});-->
+<!--    </script>-->
 </body>
 </html>
