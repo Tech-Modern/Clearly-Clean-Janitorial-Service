@@ -13,35 +13,35 @@
 </head>
 <body>
 
-    <style>
-        .css-y7r3-AppHeader {
-            position: static !important;
-        }
-        body{
-            background-color: #FFFFFF !important;
-        }
-    </style>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="../assets/img/clearly-clean-janitorial-service-logo-small.jpeg" alt="Clearly-Clean-Janitorial"></a>
+<style>
+    .css-y7r3-AppHeader {
+        position: static !important;
+    }
+    body{
+        background-color: #FFFFFF !important;
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="../assets/img/clearly-clean-janitorial-service-logo-small.jpeg" alt="Clearly-Clean-Janitorial"></a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../testimonials.html">Testimonials</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../newsletter.html">Newsletter</a></li>
-                    <li class="nav-item"><a class="nav-link" href="job-application.html">Jobs</a></li>
-                </ul>
-            </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="../testimonials.html">Testimonials</a></li>
+                <li class="nav-item"><a class="nav-link" href="../services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="../newsletter.html">Newsletter</a></li>
+                <li class="nav-item"><a class="nav-link" href="job-application.html">Jobs</a></li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 <!-- Include the Decap CMS script -->
 <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -50,11 +50,22 @@
 <script src="https://unpkg.com/react@^18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@^18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/decap-cms-app/dist/decap-cms-app.js"></script>
+<!--<script>-->
+<!--import uploadcare from 'netlify-cms-media-library-uploadcare';-->
+<!--CMS.registerMediaLibrary(uploadcare);-->
+<!--</script>-->
+<!--<script>DecapCmsApp.init();</script>-->
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script>
-    import uploadcare from 'netlify-cms-media-library-uploadcare';
-    CMS.registerMediaLibrary(uploadcare);
-    </script>
-    <script>DecapCmsApp.init();</script>
+<script>
+    netlifyIdentity.init();
+    // netlifyIdentity.on('login', () => {
+    //     // Redirect to the Decap CMS backend
+    //     window.location.href = '/admin/';
+    // });
+    netlifyIdentity.on('logout', () => {
+        console.log('User logged out');
+        window.location.href = '/admin/index.html'; // Redirect on logout
+    });
+</script>
 </body>
 </html>
