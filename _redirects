@@ -1,6 +1,6 @@
 # @netlify/plugin-gatsby redirects start
-/.netlify/identity/* /.netlify/functions/identity 200
-/api/* /.netlify/functions/__api 200
+#/.netlify/identity/* /.netlify/functions/identity 200
+#/api/* /.netlify/functions/__api 200
 # @netlify/plugin-gatsby redirects end
 ## Created with gatsby-plugin-netlify
 
