@@ -114,7 +114,7 @@
                 previousPostsList.innerHTML = '';
 
                 if (posts.length > 0) {
-                    const latestPost = posts[0];
+                    const latestPost = posts.pop();
                     postList.innerHTML = `
                         <li class="post-item">
                             <div class="post-meta">
