@@ -2,6 +2,5 @@
 title: CCJS October Newsletter
 date: 2024-12-06
 file:
-  - https://ucarecdn.com/388e5b4a-4dca-40d8-aceb-e9abbeba6650/CCJS Monthly
-    Newsletter October 2.0.pdf
+  - https://ucarecdn.com/a2562f81-3ccc-4764-9fa7-00a7d3ce3c57/
 ---
