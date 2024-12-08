@@ -129,7 +129,7 @@
                     posts.slice(0).forEach(post => {
                         const listItem = document.createElement('li');
                         listItem.innerHTML = `<a href="${post.file}" target="_blank">${post.title}</a>`;
-                        previousPostsList.appendChild(listItem);
+                        previousPostsList.prepend(listItem);
                     });
                 } else {
                     postList.innerHTML = '<li>No posts available</li>';
