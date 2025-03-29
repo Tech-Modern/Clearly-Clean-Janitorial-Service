@@ -20,7 +20,7 @@ media_library:
 collections:
   - name: "employee-newsletter"
     label: "Employee Newsletters"
-    folder: "_posts"
+    folder: "netlify/functions/_posts"
     create: true
     slug: "{{slug}}"
     fields:
