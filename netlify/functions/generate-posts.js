@@ -3,7 +3,7 @@ const path = require('path');
 const matter = require('gray-matter');
 
 // Define the folder where your markdown files are located
-const postsDir = path.join(__dirname, '_posts');
+const postsDir = path.join(__dirname, 'netlify/functions/_posts');
 
 // Define the output JSON file
 const outputFilePath = path.join(__dirname, 'posts.json');
