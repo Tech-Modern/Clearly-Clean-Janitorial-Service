@@ -4,4 +4,7 @@ node_modules
 # Local Netlify folder
 .netlify
 package-lock.json
-./cache
+.cache
+.DS_Store
+public
+assets
