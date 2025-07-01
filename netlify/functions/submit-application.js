@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
         // Email to you with PDF attachment
         const internalEmailOptions = {
             from: process.env.EMAIL_USER,   // Use EMAIL_USER
-            to: 'kbelldelao@ccjs.us',
+            to: 'abaca@ccjs.us',
             subject: `New Job Application - ${firstName} ${lastName}`,
             text: `A new job application has been submitted by ${firstName} ${lastName}. The PDF is attached to this email.`,
             attachments: [
