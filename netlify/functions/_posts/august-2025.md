@@ -1,5 +1,5 @@
 ---
-title: August 2025
+title: CCJS August Newsletter 2005
 date: 2025-08-28
 file:
   - https://vgiql3uqck.ucarecd.net/dc7d64fe-5c23-4662-85c1-028cfa94df4a/AugustESPNL.pdf
