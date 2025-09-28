@@ -35,7 +35,7 @@ fs.readdir(postsDir, (err, files) => {
     });
 
     // Sort posts based on the 'date' field in descending order
-    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    posts.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     // Write the posts array to a JSON file
     fs.writeFileSync(outputFilePath, JSON.stringify(posts, null, 2), 'utf-8');
