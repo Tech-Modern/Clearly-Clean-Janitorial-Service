@@ -6,7 +6,7 @@ const matter = require('gray-matter');
 const postsDir = path.join(__dirname, 'netlify/functions/_posts');
 
 // Define the output JSON file
-const outputFilePath = path.join(__dirname, 'posts.json');
+const outputFilePath = path.join(__dirname, '../../posts.json');
 
 // Read the markdown files from the directory
 fs.readdir(postsDir, (err, files) => {
